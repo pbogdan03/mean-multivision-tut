@@ -8,6 +8,7 @@ var express = require('express'),
     // # 13
     mongoose = require('mongoose');
 
+require('dotenv').load();
 
 // # 2
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
@@ -39,7 +40,7 @@ app.use(express.static(__dirname + '/public'));
 if(env === 'development') {
   mongoose.connect('mongodb://localhost/multivision');
 } else {
-  mongoose.connect('mongodb://bogdanpes:admin_multivision@ds033459.mongolab.com:33459/multivision_tut');
+  mongoose.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + process.env.DB_URL);
 }
 
 // # 14
